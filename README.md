@@ -1,9 +1,15 @@
-# MLE Software
+# Maximum Likelihood Estimation Software Tools
 
 ## Lesson links
 
 Lesson 1 (12/5/2023):
-\<https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html\>\\
+<https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html>  
 
 Lesson 2 (12/6/2023):
-\<https://qfcatmsu.github.io/MLE-Software/lesson2/MLE_lec2.html\>\\
+<https://qfcatmsu.github.io/MLE-Software/lesson2/MLE_lec2.html>  
+
+## Class Recordings
+
+Lectures recordings will be posted here:
+<https://mediaspace.msu.edu/channel/channelid/324238162>  
+You will need to login with your MSU ID/ Guest Account
