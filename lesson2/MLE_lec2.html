@@ -8,7 +8,7 @@
 <link href="MLE_lec2_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="MLE_lec2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="MLE_lec2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.398">
+  <meta name="generator" content="quarto-1.4.513">
 
   <meta name="author" content="Jim Bence">
   <meta name="dcterms.date" content="2023-12-01">
@@ -396,7 +396,7 @@
 
 <section id="title-slide" data-background-image="https://qfcatmsu.github.io/Images/dark-big.png" data-background-position="6% 95%" data-background-size="40%" class="quarto-title-block center">
   <h1 class="title">Software tools for Maximum Likelihood Estimation:MB</h1>
-  <p class="subtitle">Lesson 2 - first RTMB &amp; Derivatives <br> <a href="https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html" style="position:absolute;top:40%lesson1;left:35%;font-size:20px;">Click here to view presentation online</a></p>
+  <p class="subtitle">Lesson 2 - first RTMB &amp; Derivatives <br> <a href="https://qfcatmsu.github.io/MLE-Software/lesson2/MLE_lec2.html" style="position:absolute;top:40%lesson1;left:35%;font-size:20px;">Click here to view presentation online</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -603,7 +603,7 @@ L_{i} \sim N\left(L_{a_{i}}, \sigma^{2}\right)
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(RTMB);</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>gmRdat <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"musky_vonb.dat"</span>,<span class="at">head=</span>T);</span>
+<span id="cb1-3"><a href="#cb1-3"></a>gmRdat <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">"lesson2/data/musky_vonb.dat"</span>,<span class="at">head=</span>T);</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="co">#Set up the data and starting value of parameters for RTMB</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a>gmdat <span class="ot">=</span> <span class="fu">list</span>(<span class="at">len_obs=</span>gmRdat[,<span class="st">"Length"</span>],<span class="at">age=</span>gmRdat[,<span class="st">"Age"</span>]);</span>

@@ -4,7 +4,7 @@ title-slide-attributes:
     data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
     data-background-size: "40%"
     data-background-position: "6% 95%"
-subtitle: Lesson 2 - first RTMB & Derivatives <br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html){style="position:absolute;top:40%lesson1;left:35%;font-size:20px;"}
+subtitle: Lesson 2 - first RTMB & Derivatives <br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/lesson2/MLE_lec2.html){style="position:absolute;top:40%lesson1;left:35%;font-size:20px;"}
 author: Jim Bence
 date: 1 December 2023
 date-format: "D MMMM YYYY"
@@ -246,10 +246,19 @@ $$
 
 ## Musky vonB setup code
 
+```{r setup, include=FALSE, cache = FALSE}
+require("knitr") 
+## Sets the Working directory to be RStudio Project folder 
+## After this you can use the same file path in R script files and
+##      R within a Quarto document.  
+## This code is not outputted to the HTML or PDF documents.
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
 ```{R echo = T}
 library(RTMB);
 
-gmRdat = read.table("musky_vonb.dat",head=T);
+gmRdat = read.table("lesson2/data/musky_vonb.dat",head=T);
 
 #Set up the data and starting value of parameters for RTMB
 gmdat = list(len_obs=gmRdat[,"Length"],age=gmRdat[,"Age"]);

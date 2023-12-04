@@ -2,7 +2,7 @@
 # Adapted from admb and TMB classes by Bence and Brenden
 library(RTMB);
 
-gmRdat = read.table("musky_vonb.dat",head=T);
+gmRdat = read.table("lesson2/data/musky_vonb.dat",head=T);
 
 #Set up the data and starting value of parameters for RTMB
 gmdat = list(len_obs=gmRdat[,"Length"],age=gmRdat[,"Age"]);
