@@ -51,7 +51,7 @@ Material will be presented in lecture/demo format via zoom, with hands on workin
 
 The course material will be available through a public GitHub site:
 
-<https://github.com/jimbence/MLESOFT>
+<https://github.com/QFCatMSU/MLE-Software>
 
 Lectures will be recorded and loaded to:
 

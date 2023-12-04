@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.398">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -149,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="1.7" class="anchored" data-anchor-id="course-structure-and-accessing-class-materials"><span class="header-section-number">1.7</span> Course Structure and accessing class materials</h3>
 <p>Material will be presented in lecture/demo format via zoom, with hands on working sessions in breakout zoom rooms. These zoom rooms will allow the instructor to simulate like checking in with a few students at a time as exercises are worked on. Because the course materials are publically accessible, for security reasons the zoom link is not included here but is sent to enrolled students by email.</p>
 <p>The course material will be available through a public GitHub site:</p>
-<p><a href="https://github.com/jimbence/MLESOFT" class="uri">https://github.com/jimbence/MLESOFT</a></p>
+<p><a href="https://github.com/QFCatMSU/MLE-Software" class="uri">https://github.com/QFCatMSU/MLE-Software</a></p>
 <p>Lectures will be recorded and loaded to:</p>
 <p><a href="https://mediaspace.msu.edu/channel/channelid/324238162" class="uri">https://mediaspace.msu.edu/channel/channelid/324238162</a></p>
 <p>To access the recordings you will need your MSU ID/Guest Account</p>
@@ -427,8 +427,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML
