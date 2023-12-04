@@ -13,3 +13,7 @@ Lesson 2 (12/6/2023):
 Lectures recordings will be posted here:
 <https://mediaspace.msu.edu/channel/channelid/324238162>  
 You will need to login with your MSU ID/ Guest Account
+
+## MSU Library link:
+
+<https://lib.msu.edu/>  
