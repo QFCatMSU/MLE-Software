@@ -3,6 +3,10 @@ title: "Maximum Likelihood Estimation Software Tools"
 format: gfm
 ---
 
+## Syllabus
+
+<https://qfcatmsu.github.io/MLE-Software/Syllabus/MLEsoft_syllabus.html>
+
 ## Lesson links
 
 Lesson 1 (12/5/2023): <https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html>\

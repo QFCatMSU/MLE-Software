@@ -1,5 +1,9 @@
 # Maximum Likelihood Estimation Software Tools
 
+## Syllabus
+
+<https://qfcatmsu.github.io/MLE-Software/Syllabus/MLEsoft_syllabus.html>
+
 ## Lesson links
 
 Lesson 1 (12/5/2023):
