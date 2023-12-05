@@ -24,3 +24,8 @@ You will need to login with your MSU ID/ Guest Account
 ## MSU Library link:
 
 <https://lib.msu.edu/>  
+
+## Zoom link
+
+<https://msu.zoom.us/j/93746879660> The password is in an email sent to
+you
