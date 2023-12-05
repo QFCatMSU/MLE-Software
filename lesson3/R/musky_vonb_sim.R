@@ -4,7 +4,7 @@
 set.seed(123456)
 library(RTMB);
 
-gmRdat = read.table("musky_vonb.dat",head=T);
+gmRdat = read.table("lesson3/data/musky_vonb.dat",head=T);
 
 #Set up the data and starting value of parameters for RTMB
 gmdat_real = list(len_obs=gmRdat[,"Length"],age=gmRdat[,"Age"]);
