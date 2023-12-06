@@ -24,15 +24,24 @@ NLL_fun = function(par_lst){
   mu=shape*scale;
   ADREPORT(logSD);
   ADREPORT(mu);
-  -sum(dgamma(xvec,scale=exp(logscale),shape=exp(logshape),log=T))
+  -sum(dgamma(xvec,scale=scale,shape=shape,log=T))
 }
 
 
 obj <- MakeADFun(NLL_fun,par_lst);
 opt <- nlminb(obj$par,obj$fn,obj$gr);
-sdrep <- sdreport(obj)
-summary(sdrep)#NLL
-obj$env$value.best
+sdrep <- sdreport(obj);
+sumsd=summary(sdrep);
+sdrep;
+sumsd;
+obj$env$value.best #NLL
 #MLEs (same as in summary(sdrep))
-obj$env$last.par.best
 
+#Pull out parameter estimates and standard errors
+est=as.list(sdrep,"Est");
+est;
+se=as.list(sdrep,"Std");
+se;
+# strip out "what" attribute from est
+attr(est,"what")=NULL;
+est; #same form as the starting value list
