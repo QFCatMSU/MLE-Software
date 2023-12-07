@@ -112,7 +112,7 @@ h is semi-arbitrary but small relative to $\theta_i$.
 Central differences
 
 $$
-\partial f / \partial \theta_{i}=\frac{f\left(\theta_{i}+h\right)-f\left(\theta_{i}\right)}{h}
+\partial f / \partial \theta_{i}=\frac{f\left(\theta_{i}+h/2\right)-f\left(\theta_{i}-h/2\right)}{h}
 $$
 
 ## Exercise - finite difference derivatives
