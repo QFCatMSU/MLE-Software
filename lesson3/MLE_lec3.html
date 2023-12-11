@@ -456,6 +456,10 @@ c=2 \operatorname{logit}^{-1}(b)-1=\frac{2}{1+\exp (-b)}-1
 \]</span></p></li>
 </ul>
 </section>
+<section id="flow-when-using-rtmb" class="slide level2">
+<h2>Flow when using RTMB</h2>
+
+<img data-src="images/tranformation%20flow.png" class="r-stretch"></section>
 <section id="for-similar-quantities" class="slide level2">
 <h2>For similar quantities</h2>
 <ul>
@@ -546,7 +550,7 @@ c=2 \operatorname{logit}^{-1}(b)-1=\frac{2}{1+\exp (-b)}-1
 <li><p>Code squib</p>
 <p>#create upper and lower bounds</p>
 <p>lower = c(4,-5,-5,0); upper = c(10,1,5,10);</p>
-<p>#fit with bounds, here … are the other arguments we usually use</p>
+<p>#fit with bounds, here “…” the usual args</p>
 <p>fit = nlminb(…, upper=upper, lower=lower);</p></li>
 </ul>
 </section>
@@ -564,9 +568,9 @@ c=2 \operatorname{logit}^{-1}(b)-1=\frac{2}{1+\exp (-b)}-1
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
 <ul>
-<li><p>Modify the vonB program to bound the parameters (bounds in slide on bounds reasonable choices)</p></li>
+<li><p>Modify the vonB program to bound the parameters (bounds in previous example code reasonable values)</p></li>
 <li><p>Modify the vonB program to not estimate log_linf using a map</p></li>
-<li><p>See if you can combine setting bounds and fixing a parameter</p></li>
+<li><p>See if you can combine setting bounds and fixing a parameter (hint: fixed par is not in vector nlminb sees)</p></li>
 </ul>
 </section>
 <section id="uncertainty-basic-definitions-of-expected-value-variance-covariance-and-correlation" class="slide level2">
@@ -629,10 +633,11 @@ c=2 \operatorname{logit}^{-1}(b)-1=\frac{2}{1+\exp (-b)}-1
 <li>Likelihood profile CI based on inverting a Likelihood Ratio test, with test statistic:</li>
 </ul>
 <p><span class="math display">\[
-L R T=-2 \log \frac{\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\theta_{0}}\right)}{\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})}=-2\left[\log \left(\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\Theta}_{0}\right)\right)-\log (\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})]\right.
+\begin{array} LLRT=-2 \log \frac{\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\theta_{0}}\right)}{\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})}=
+\\-2\left[\log \left(\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\Theta}_{0}\right)\right)-\log (\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})]\right. \end{array}
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(L R_r \sim X_{\nu}^{2}\)</span> with <span class="math inline">\(\nu\)</span> df (based on number of restrictions)</p></li>
+<li><p><span class="math inline">\(LR T \sim X_{\nu}^{2}\)</span> with <span class="math inline">\(\nu\)</span> df (based on number of restrictions)</p></li>
 <li><p>Of interest here is <span class="math inline">\(\underline{\theta} \in \underline{\Theta}_{0}\)</span> with one parameter fixed, testing if that focal parameter differs from fixed value.</p>
 <ul>
 <li>In this case <span class="math inline">\(\text{crit}=C D F_{X_{1}^{2}}^{-1}(1-\alpha)\)</span></li>
@@ -691,7 +696,7 @@ L R T=-2 \log \frac{\sup \left(L(\underline{\theta}), \underline{\theta} \in \un
 <p>simy=my_obj$simulate()$y</p></li>
 </ul></li>
 <li><p>Common plan: (1) replace data model was fit to with simulated data, (2) refit the model to this copy and save pertinent results. Repeat 1&amp;2 many times and summarize.</p></li>
-<li><p>I will demo doing this for one data set and have you attempt to do a full simulation study.</p></li>
+<li><p>I will demo doing one simulation, outline the full simulation procedure, then turn you loose on it.</p></li>
 </ul>
 <div class="footer footer-default">
 

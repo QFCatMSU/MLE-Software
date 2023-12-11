@@ -66,6 +66,10 @@ $$
     c=2 \operatorname{logit}^{-1}(b)-1=\frac{2}{1+\exp (-b)}-1
     $$
 
+## Flow when using RTMB
+
+![](images/tranformation%20flow.png)
+
 ## For similar quantities
 
 -   E.g., catchability for different survey gears, or year or location effects
@@ -149,7 +153,7 @@ sel
 
     lower = c(4,-5,-5,0); upper = c(10,1,5,10);
 
-    #fit with bounds, here ... are the other arguments we usually use
+    #fit with bounds, here "..." the usual args
 
     fit = nlminb(..., upper=upper, lower=lower);
 
@@ -170,12 +174,13 @@ sel
 
 ## Exercises
 
--   Modify the vonB program to bound the parameters (bounds in slide on bounds
-    reasonable choices)
+-   Modify the vonB program to bound the parameters (bounds in previous example
+    code reasonable values)
 
 -   Modify the vonB program to not estimate log_linf using a map
 
--   See if you can combine setting bounds and fixing a parameter
+-   See if you can combine setting bounds and fixing a parameter (hint: fixed par
+    is not in vector nlminb sees)
 
 ## Uncertainty, basic definitions of expected value, variance, covariance, and correlation
 
@@ -250,10 +255,11 @@ $$
     statistic:
 
 $$
-L R T=-2 \log \frac{\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\theta_{0}}\right)}{\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})}=-2\left[\log \left(\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\Theta}_{0}\right)\right)-\log (\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})]\right.
+\begin{array} LLRT=-2 \log \frac{\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\theta_{0}}\right)}{\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})}=
+\\-2\left[\log \left(\sup \left(L(\underline{\theta}), \underline{\theta} \in \underline{\Theta}_{0}\right)\right)-\log (\sup (L(\underline{\theta}), \underline{\theta} \in \underline{\theta})]\right. \end{array}
 $$
 
--   $L R_r \sim X_{\nu}^{2}$ with $\nu$ df (based on number of restrictions)
+-   $LR T \sim X_{\nu}^{2}$ with $\nu$ df (based on number of restrictions)
 
 -   Of interest here is $\underline{\theta} \in \underline{\Theta}_{0}$ with one
     parameter fixed, testing if that focal parameter differs from fixed value.
@@ -331,5 +337,5 @@ RTMB::MakeADFun(...);
     the model to this copy and save pertinent results. Repeat 1&2 many times and
     summarize.
 
--   I will demo doing this for one data set and have you attempt to do a full
-    simulation study.
+-   I will demo doing one simulation, outline the full simulation procedure, then
+    turn you loose on it.
