@@ -8,7 +8,7 @@
 <link href="MLE_lec2_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="MLE_lec2_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="MLE_lec2_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.513">
+  <meta name="generator" content="quarto-1.4.398">
 
   <meta name="author" content="Jim Bence">
   <meta name="dcterms.date" content="2023-12-01">
@@ -411,14 +411,16 @@ Jim Bence
 <section id="outline" class="slide level2">
 <h2>Outline:</h2>
 <ul>
-<li>Demos and exercises of using nlminb and RTMB to estimate parameters</li>
+<li>Demos of using nlminb and RTMB to estimate parameters</li>
+<li>Explanation of what happened in RTMB</li>
+<li>Simple exercise adapting RTMB example</li>
 <li>All that derivative stuff
 <ul>
-<li>Definitions derivatives, partial derivatives, second derivatives, cross derivatives (aka mixed second derivatives), gradient vector and Hessian</li>
+<li>derivatives, partial derivatives, second derivatives, cross derivatives (aka mixed second derivatives), gradient vector and Hessian</li>
 </ul></li>
 <li>Methods to calculate/appoximate derivatives</li>
 <li>Exercise: finite difference derivatives</li>
-<li>Using the Hessian and gradient vector in parameter searches and to assess uncertainty</li>
+<li>How the Hessian and gradient vector are used</li>
 <li>RTMB Nonlinear regression vonb example</li>
 </ul>
 </section>
@@ -427,8 +429,22 @@ Jim Bence
 <ul>
 <li><p>Just using nlminb</p></li>
 <li><p>Using RTMB</p></li>
-<li><p>Exercise - change model to assume gamma rather than normal (in breakout groups)</p></li>
 </ul>
+</section>
+<section id="magic-when-we-used-makeadfun-in-rtmb" class="slide level2">
+<h2>“Magic” when we used MakeADFun in RTMB</h2>
+<ul>
+<li><p>Converts your parameter list and NLL function into new inputs for nlminb (and lots of hidden stuff)</p>
+<ul>
+<li><p>obj$par: your list of starting values as vector</p></li>
+<li><p>obj$fn: function pointing to memory location where NLL function result is stored</p></li>
+<li><p>obj$gr: function pointing to memory location where gradient stored</p></li>
+</ul></li>
+<li><p>IMPORTANT! obj$fn and obj$gr use hidden copy (created by MakeADFun) of any variables used in your NLL function</p></li>
+</ul>
+</section>
+<section id="exercise---change-model-to-assume-gamma-rather-than-normal-in-breakout-groups" class="slide level2">
+<h2>Exercise - change model to assume gamma rather than normal (in breakout groups)</h2>
 </section>
 <section id="what-is-a-derivative" class="slide level2">
 <h2>What is a derivative</h2>

@@ -21,14 +21,15 @@ editor:
 
 ## Outline:
 
--   Demos and exercises of using nlminb and RTMB to estimate parameters
+-   Demos of using nlminb and RTMB to estimate parameters
+-   Explanation of what happened in RTMB
+-   Simple exercise adapting RTMB example
 -   All that derivative stuff
-    -   Definitions derivatives, partial derivatives, second derivatives, cross
-        derivatives (aka mixed second derivatives), gradient vector and Hessian
+    -   derivatives, partial derivatives, second derivatives, cross derivatives
+        (aka mixed second derivatives), gradient vector and Hessian
 -   Methods to calculate/appoximate derivatives
 -   Exercise: finite difference derivatives
--   Using the Hessian and gradient vector in parameter searches and to assess
-    uncertainty
+-   How the Hessian and gradient vector are used
 -   RTMB Nonlinear regression vonb example
 
 ## Demos of estimating the mean the hard way
@@ -37,8 +38,22 @@ editor:
 
 -   Using RTMB
 
--   Exercise - change model to assume gamma rather than normal (in breakout
-    groups)
+## "Magic" when we used MakeADFun in RTMB
+
+-   Converts your parameter list and NLL function into new inputs for nlminb (and
+    lots of hidden stuff)
+
+    -   obj\$par: your list of starting values as vector
+
+    -   obj\$fn: function pointing to memory location where NLL function result
+        is stored
+
+    -   obj\$gr: function pointing to memory location where gradient stored
+
+-   IMPORTANT! obj\$fn and obj\$gr use hidden copy (created by MakeADFun) of any
+    variables used in your NLL function
+
+## Exercise - change model to assume gamma rather than normal (in breakout groups)
 
 ## What is a derivative
 
