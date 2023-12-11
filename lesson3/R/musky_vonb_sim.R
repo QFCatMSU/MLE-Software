@@ -23,18 +23,61 @@ NLL_fun = function(par_lst){
   nll
 }
 
+#TIP - assign data you want to use to list used in your NLL function
+#   immediately before MakeADFun (when using different datasets)
 #Create object and fit model to original data
-gmdat=gmdat_real;
+gmdat=gmdat_real; 
 obj=RTMB::MakeADFun(NLL_fun,gmpar);
 fit=nlminb(obj$par, obj$fn, obj$gr);
-fit$par;
-
+fit$convergence;
+sdr=sdreport(obj);
+sdr;
 
 simdat=gmdat_real;  #copy real data
-#Simulate obs lengths and write to data copy
+#Simulate obs lengths, write to data copy,refit model
 simdat$len_obs=obj$simulate()$len_obs;
 gmdat=simdat;
 objsim <- RTMB::MakeADFun(NLL_fun,gmpar);
 simfit = nlminb(objsim$par, objsim$fn, objsim$gr);
-simfit$par
-fit$par
+sim_conv=simfit$convergence;
+sim_sdr=sdreport(objsim);
+
+# Pulling out results we want
+sim_est=as.list(sim_sdr, "Est");
+attr(sim_est,"what")=NULL;
+sim_se=as.list(sim_sdr,"Std");
+attr(sim_se,"what")=NULL;
+
+#Lists and do.call very useful for sims
+#List sizes do not need to be specified in advance
+#Writing to lists is numerically more efficient
+lst_est = list();
+lst_se = list();
+lst_conv = list();
+
+#Here just to illustrate we write our set of simulation
+# results to the first element of list then rerun our sim lines
+# and write the second set to the second element;
+lst_est[[1]]=sim_est;
+lst_se[[1]]=sim_se;
+lst_conv[[1]]=sim_conv
+
+# REMEMBER to rerun the simulation before writing these lines
+# In a full simulation you would run your simulation in a loop
+# and write to the "ith" element each time
+lst_est[[2]]=sim_est;
+lst_se[[2]]=sim_se;
+lst_conv[[2]]=sim_conv;
+
+# After running all the iterations we can use do.call
+#  to put results of a particular type together in matrix
+# e.g., each row a simulation run, each col the est for a different param
+
+#First put all results in one list (not essential);
+res_lst<-list(est=lst_est,se=lst_se,conv=lst_conv);
+
+#Then create the matrix of estimates
+matrix_est=do.call(rbind,res_lst$est);
+matrix_SEs=do.call(rbind,res_lst$se);
+vec_conv=as.vector(do.call(rbind,res_lst$conv));
+
