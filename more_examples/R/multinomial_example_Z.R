@@ -1,8 +1,8 @@
-#Data generating program for multinomial example
+#Data generating  and estimating for age comp data
 
 library(RTMB);
 
-### Ignore initially, this is code used to generate data
+### code used to generate data
 set.seed(123456);
 log_rbar=1; #(arbitary)
 Z=.15;
@@ -20,7 +20,7 @@ for (i in 1:9){
 samp_dat[,i]=rmultinom(1,size=samp_size[i],prob=prop);
 }
 
-##### End simulation code
+##### End data generation simulation code
 
 real_dat_lst=list(samp_dat=samp_dat,samp_size=samp_size,sel=sel);
 par_lst=list(Z=0.2);
