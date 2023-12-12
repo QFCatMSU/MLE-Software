@@ -15,6 +15,12 @@ Lesson 2 (12/6/2023):
 Lesson 3 (12/7/2023):
 <https://qfcatmsu.github.io/MLE-Software/lesson3/MLE_lec3.html>  
 
+Lesson 4 (12/11/2023):
+<https://qfcatmsu.github.io/MLE-Software/lesson4/MLE_lec4.html>  
+
+Evolving description of misc examples (12/12/2023):
+<https://qfcatmsu.github.io/MLE-Software/more_examples/MLE_examples.html>  
+
 ## Class Recordings
 
 Lectures recordings will be posted here:
