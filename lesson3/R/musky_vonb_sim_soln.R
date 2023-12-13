@@ -58,16 +58,16 @@ lst_conv = list();
 #Here just to illustrate we write our set of simulation
 # results to the first element of list then rerun our sim lines
 # and write the second set to the second element;
-lst_est[[1]]=sim_est;
-lst_se[[1]]=sim_se;
-lst_conv[[1]]=sim_conv
+lst_est[[1]]=unlist(sim_est);
+lst_se[[1]]=unlist(sim_se);
+lst_conv[[1]]=unlist(sim_conv);
 
 # REMEMBER to rerun the simulation before writing these lines
 # In a full simulation you would run your simulation in a loop
 # and write to the "ith" element each time
-lst_est[[2]]=sim_est;
-lst_se[[2]]=sim_se;
-lst_conv[[2]]=sim_conv;
+lst_est[[2]]=unlist(sim_est);
+lst_se[[2]]=unlist(sim_se);
+lst_conv[[2]]=unlist(sim_conv);
 
 # After running all the iterations we can use do.call
 #  to put results of a particular type together in matrix
@@ -119,4 +119,6 @@ df_conv=do.call(rbind,res_lst$conv);
 #Plot results and calculate 95% par bootstrap CI
 hist(m_est[,"log_linf"])
 quantile(m_est[,"log_linf"],probs=c(0.025,0.975));
+
+#?? coverage
 
