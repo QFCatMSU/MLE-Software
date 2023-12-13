@@ -113,12 +113,19 @@ res_lst<-list(est=lst_est,se=lst_se,conv=lst_conv);
 
 #Then create the matrix of estimates
 m_est=do.call(rbind,res_lst$est);
-df_SEs=do.call(rbind,res_lst$se);
-df_conv=do.call(rbind,res_lst$conv);
+m_SEs=do.call(rbind,res_lst$se);
+m_conv=do.call(rbind,res_lst$conv);
 
 #Plot results and calculate 95% par bootstrap CI
 hist(m_est[,"log_linf"])
 quantile(m_est[,"log_linf"],probs=c(0.025,0.975));
 
-#?? coverage
+#coverage
 
+ci=m_est[,"log_linf"]+cbind(-m_SEs[,"log_linf"],m_SEs[,"log_linf"])*qnorm(0.975);
+ci=as.data.frame(ci)
+names(ci)=c("lb","ub");
+head(ci);
+tst_ci=with(ci, lb<= fit$par["log_linf"] & ub >= fit$par["log_linf"])
+#count up the cases its in the CI (if procedure right should be ~950)
+sum(tst_ci);

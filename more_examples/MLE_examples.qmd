@@ -23,7 +23,9 @@ editor:
 
 -   Age comp data
     -   multinomial and Dirichlet-multinomial
--   Code for other examples not yet described
+-   Multivariate normal data
+-   Correlated random effects for vonB model
+-   Other undocumented examples
 
 ## Age comp example
 
@@ -48,6 +50,23 @@ $$
 \begin{array}{c}N_{a}=R \exp (-Z(a-r)), r \leq a \leq \max \\C_{i, a}=q_{i} S_{a} N_{a} \\p_{a}=\frac{S_{a} N_{a}}{\sum_{j=r}^{\max } S_{j} N_{j}} \\\underline{n}_{i} \sim \operatorname{multinom}\left(n_{i}, \underline{p}_{a}\right), n_{i}=\sum_{a=r}^{a=\max } n_{i, a}\end{array}
 $$
 
+## Setting effective sample size
+
+-   multinomial apps often use data as proportions and "effective sample size",
+    which often differs from actual sample size
+
+-   In applications the negative log likelihood was had written in terms of
+    proportions and ESS
+
+-   You can emulate this in RTMB by multiplying the proportions by the ESS and
+    providing these as the data to dmultinom (don't set size!)
+
+    -   The NLL returned will depend on the ESS but ESS cannot be estimated
+        (nothing new for multinomial here)
+
+    -   Works because the internal calculations are for dmultinom are all defined
+        for non-integers.
+
 ## Dirichlet-Multinomial
 
 -   Compound distribution, p vector comes from dirichlet then used as parameter
@@ -59,4 +78,88 @@ $$
 
 $$
 \begin{array}{c}\underline{n}_{i} \sim \operatorname{DirMult}\left(n_{i}, \underline{\alpha}_{i}\right), \alpha_{i, a}>0 \\E\left(n_{i, a}\right)=n_{i} \frac{\alpha_{i, a}}{\sum_{j} \alpha_{i, j}}, E S S_{i}=\sum_{a} \alpha_{j, a} \\\alpha_{i, a}=\theta n_{i} p_{a}, E S S_{i}=\theta n_{i}\end{array}
+$$
+
+## Multivariate Normal Distribution with unstructured var-cov matrix
+
+-   Parameterize so that standard deviations and correlations can be calculated
+    and converted into a variance-covariance matrix
+
+-   Estimate the standard deviations on log-scale
+
+-   Not sufficient to restrict correlations to -1 to 1 as some combinations of
+    correlations are not consistent with feasible correlation matrices
+
+    -   e.g., if *a* and *b* are highly negatively correlated, you can't have *c*
+        highly positively correlated with a and highly negatively correlated with
+        *b*
+
+## Motivation for being able to deal with unstructured MVN
+
+-   You might actually want to assume some data are multivariate normal (e.g.,
+    some catch-at-age assessments assume log of catch-at-age MVN). But often we
+    impose structure on correlations.
+
+-   You might want to allow different random effects to be correlated. E.g., we
+    might expect the vonB function parameters for a pond will be either
+    positively or negatively correlated with one another.
+
+-   Illustrate with another very simple example
+
+## Simple application of unstructured multivariate normal
+
+-   We have a set of multivariate observations assumed to come from a
+    multivariate normal distribution
+
+-   We estimate the mean vector and parameters that determine the
+    variance-covariance matrix
+
+    -   Illustrate how to estimate parameters on real number line that determine
+        a "legal" correlation matrix
+
+    -   Illustrate how to get the variance-covariance matrix from correlation
+        matrix and vectors of standard deviations
+
+    -   See "unstructured" example R script
+
+## Correlated random effects for vonB model
+
+-   We have already seen how to make a vonB parameter a random effect. We could
+    have made more than one parameter random at the same time using dnorm
+
+    -   This assumes the random effects are independent but often that is not
+        plausible (when fish ultimately get big (Linf) they might approach
+        asymptotic size more slowly (K).
+
+-   We can implement this by having the vonB parameters follow a multivariate
+    normal distribution
+
+-   Larger and more realistic example data set, reparameterizd the vonB (use L2
+    rather than t0)
+
+## New growth data set
+
+-   20 different ponds
+
+-   Each observation gives the pond ID and the length and age for an individual
+    fish
+
+## Reparameterized vonB
+
+-   This is not changing the underlying growth function just how it is
+    parameterized
+
+-   Standard parameterization has been criticized for t0 being hard to interpret
+    and for correlation with other parameters
+
+-   Use L2 (length at age 2) instead. Chose age within range of observed data
+
+    $$
+    L_a=\widetilde{L}_{2}+\left(L_{\infty}-\widetilde{L}_{2}\right) \exp (-K(a-2))
+    $$
+
+## The multivariate random effects model
+
+$$
+\begin{array}{c}{\left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
 $$

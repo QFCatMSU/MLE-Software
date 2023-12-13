@@ -348,7 +348,9 @@ Jim Bence
 <ul>
 <li>multinomial and Dirichlet-multinomial</li>
 </ul></li>
-<li>Code for other examples not yet described</li>
+<li>Multivariate normal data</li>
+<li>Correlated random effects for vonB model</li>
+<li>Other undocumented examples</li>
 </ul>
 </section>
 <section id="age-comp-example" class="slide level2">
@@ -372,6 +374,18 @@ Jim Bence
 \begin{array}{c}N_{a}=R \exp (-Z(a-r)), r \leq a \leq \max \\C_{i, a}=q_{i} S_{a} N_{a} \\p_{a}=\frac{S_{a} N_{a}}{\sum_{j=r}^{\max } S_{j} N_{j}} \\\underline{n}_{i} \sim \operatorname{multinom}\left(n_{i}, \underline{p}_{a}\right), n_{i}=\sum_{a=r}^{a=\max } n_{i, a}\end{array}
 \]</span></p>
 </section>
+<section id="setting-effective-sample-size" class="slide level2">
+<h2>Setting effective sample size</h2>
+<ul>
+<li><p>multinomial apps often use data as proportions and “effective sample size”, which often differs from actual sample size</p></li>
+<li><p>In applications the negative log likelihood was had written in terms of proportions and ESS</p></li>
+<li><p>You can emulate this in RTMB by multiplying the proportions by the ESS and providing these as the data to dmultinom (don’t set size!)</p>
+<ul>
+<li><p>The NLL returned will depend on the ESS but ESS cannot be estimated (nothing new for multinomial here)</p></li>
+<li><p>Works because the internal calculations are for dmultinom are all defined for non-integers.</p></li>
+</ul></li>
+</ul>
+</section>
 <section id="dirichlet-multinomial" class="slide level2">
 <h2>Dirichlet-Multinomial</h2>
 <ul>
@@ -381,6 +395,72 @@ Jim Bence
 </ul>
 <p><span class="math display">\[
 \begin{array}{c}\underline{n}_{i} \sim \operatorname{DirMult}\left(n_{i}, \underline{\alpha}_{i}\right), \alpha_{i, a}&gt;0 \\E\left(n_{i, a}\right)=n_{i} \frac{\alpha_{i, a}}{\sum_{j} \alpha_{i, j}}, E S S_{i}=\sum_{a} \alpha_{j, a} \\\alpha_{i, a}=\theta n_{i} p_{a}, E S S_{i}=\theta n_{i}\end{array}
+\]</span></p>
+</section>
+<section id="multivariate-normal-distribution-with-unstructured-var-cov-matrix" class="slide level2">
+<h2>Multivariate Normal Distribution with unstructured var-cov matrix</h2>
+<ul>
+<li><p>Parameterize so that standard deviations and correlations can be calculated and converted into a variance-covariance matrix</p></li>
+<li><p>Estimate the standard deviations on log-scale</p></li>
+<li><p>Not sufficient to restrict correlations to -1 to 1 as some combinations of correlations are not consistent with feasible correlation matrices</p>
+<ul>
+<li>e.g., if <em>a</em> and <em>b</em> are highly negatively correlated, you can’t have <em>c</em> highly positively correlated with a and highly negatively correlated with <em>b</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="motivation-for-being-able-to-deal-with-unstructured-mvn" class="slide level2">
+<h2>Motivation for being able to deal with unstructured MVN</h2>
+<ul>
+<li><p>You might actually want to assume some data are multivariate normal (e.g., some catch-at-age assessments assume log of catch-at-age MVN). But often we impose structure on correlations.</p></li>
+<li><p>You might want to allow different random effects to be correlated. E.g., we might expect the vonB function parameters for a pond will be either positively or negatively correlated with one another.</p></li>
+<li><p>Illustrate with another very simple example</p></li>
+</ul>
+</section>
+<section id="simple-application-of-unstructured-multivariate-normal" class="slide level2">
+<h2>Simple application of unstructured multivariate normal</h2>
+<ul>
+<li><p>We have a set of multivariate observations assumed to come from a multivariate normal distribution</p></li>
+<li><p>We estimate the mean vector and parameters that determine the variance-covariance matrix</p>
+<ul>
+<li><p>Illustrate how to estimate parameters on real number line that determine a “legal” correlation matrix</p></li>
+<li><p>Illustrate how to get the variance-covariance matrix from correlation matrix and vectors of standard deviations</p></li>
+<li><p>See “unstructured” example R script</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="correlated-random-effects-for-vonb-model" class="slide level2">
+<h2>Correlated random effects for vonB model</h2>
+<ul>
+<li><p>We have already seen how to make a vonB parameter a random effect. We could have made more than one parameter random at the same time using dnorm</p>
+<ul>
+<li>This assumes the random effects are independent but often that is not plausible (when fish ultimately get big (Linf) they might approach asymptotic size more slowly (K).</li>
+</ul></li>
+<li><p>We can implement this by having the vonB parameters follow a multivariate normal distribution</p></li>
+<li><p>Larger and more realistic example data set, reparameterizd the vonB (use L2 rather than t0)</p></li>
+</ul>
+</section>
+<section id="new-growth-data-set" class="slide level2">
+<h2>New growth data set</h2>
+<ul>
+<li><p>20 different ponds</p></li>
+<li><p>Each observation gives the pond ID and the length and age for an individual fish</p></li>
+</ul>
+</section>
+<section id="reparameterized-vonb" class="slide level2">
+<h2>Reparameterized vonB</h2>
+<ul>
+<li><p>This is not changing the underlying growth function just how it is parameterized</p></li>
+<li><p>Standard parameterization has been criticized for t0 being hard to interpret and for correlation with other parameters</p></li>
+<li><p>Use L2 (length at age 2) instead. Chose age within range of observed data</p>
+<p><span class="math display">\[
+L_a=\widetilde{L}_{2}+\left(L_{\infty}-\widetilde{L}_{2}\right) \exp (-K(a-2))
+\]</span></p></li>
+</ul>
+</section>
+<section id="the-multivariate-random-effects-model" class="slide level2">
+<h2>The multivariate random effects model</h2>
+<p><span class="math display">\[
+\begin{array}{c}{\left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
 \]</span></p>
 <div class="footer footer-default">
 
