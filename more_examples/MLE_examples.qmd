@@ -52,20 +52,19 @@ $$
 
 ## Setting effective sample size
 
--   multinomial apps often use data as proportions and "effective sample size",
-    which often differs from actual sample size
+-   Multinomial apps often use data as proportions and "effective sample size"
+    (ESS)
 
--   In applications the negative log likelihood was had written in terms of
+-   In such applications the negative log likelihood was written in terms of
     proportions and ESS
 
--   You can emulate this in RTMB by multiplying the proportions by the ESS and
-    providing these as the data to dmultinom (don't set size!)
+-   In RTMB emulate by providing dmultinom product of proportions and ESS as the
+    data (don't set size!)
 
     -   The NLL returned will depend on the ESS but ESS cannot be estimated
         (nothing new for multinomial here)
 
-    -   Works because the internal calculations are for dmultinom are all defined
-        for non-integers.
+    -   Works because the internal dmultinom calcs allow non-integers.
 
 ## Dirichlet-Multinomial
 
@@ -93,6 +92,20 @@ $$
     -   e.g., if *a* and *b* are highly negatively correlated, you can't have *c*
         highly positively correlated with a and highly negatively correlated with
         *b*
+
+## Converting SDs and correlation matrix to a var-cov matrix
+
+-   Typical element of correlation matrix P is
+    $\rho_{i,j} = \sigma_{i,j}^{2}/(\sigma_{i,i}\sigma_{j,j})$
+
+    -   $\sigma_{i,j}^2$ is a typical element of the variance-covariance matrix,
+        with $\sigma_{i,j}^2=\rho_{i,j}\sigma_{i,i}\sigma_{j,j}$
+
+-   Matrix algebra to convert correlation matrix and SDs to var-cov matrix
+
+$$
+\Sigma=\operatorname{diag}\left(\sigma_{1,1}, \cdots, \sigma_{k, k}\right) \mathrm{P} \operatorname{diag}\left(\sigma_{1,1}, \cdots, \sigma_{k, k}\right)
+$$
 
 ## Motivation for being able to deal with unstructured MVN
 
@@ -128,13 +141,13 @@ $$
     have made more than one parameter random at the same time using dnorm
 
     -   This assumes the random effects are independent but often that is not
-        plausible (when fish ultimately get big (Linf) they might approach
-        asymptotic size more slowly (K).
+        plausible \[when fish ultimately get big (Linf) they might approach
+        asymptotic size more slowly (K)\].
 
 -   We can implement this by having the vonB parameters follow a multivariate
     normal distribution
 
--   Larger and more realistic example data set, reparameterizd the vonB (use L2
+-   Larger and more realistic example data set, reparameterized the vonB (use L2
     rather than t0)
 
 ## New growth data set
@@ -161,5 +174,5 @@ $$
 ## The multivariate random effects model
 
 $$
-\begin{array}{c}{\left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
+\begin{array}{c}{\underline{\omega}_i = \left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
 $$

@@ -377,12 +377,12 @@ Jim Bence
 <section id="setting-effective-sample-size" class="slide level2">
 <h2>Setting effective sample size</h2>
 <ul>
-<li><p>multinomial apps often use data as proportions and “effective sample size”, which often differs from actual sample size</p></li>
-<li><p>In applications the negative log likelihood was had written in terms of proportions and ESS</p></li>
-<li><p>You can emulate this in RTMB by multiplying the proportions by the ESS and providing these as the data to dmultinom (don’t set size!)</p>
+<li><p>Multinomial apps often use data as proportions and “effective sample size” (ESS)</p></li>
+<li><p>In such applications the negative log likelihood was written in terms of proportions and ESS</p></li>
+<li><p>In RTMB emulate by providing dmultinom product of proportions and ESS as the data (don’t set size!)</p>
 <ul>
 <li><p>The NLL returned will depend on the ESS but ESS cannot be estimated (nothing new for multinomial here)</p></li>
-<li><p>Works because the internal calculations are for dmultinom are all defined for non-integers.</p></li>
+<li><p>Works because the internal dmultinom calcs allow non-integers.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -407,6 +407,19 @@ Jim Bence
 <li>e.g., if <em>a</em> and <em>b</em> are highly negatively correlated, you can’t have <em>c</em> highly positively correlated with a and highly negatively correlated with <em>b</em></li>
 </ul></li>
 </ul>
+</section>
+<section id="converting-sds-and-correlation-matrix-to-a-var-cov-matrix" class="slide level2">
+<h2>Converting SDs and correlation matrix to a var-cov matrix</h2>
+<ul>
+<li><p>Typical element of correlation matrix P is <span class="math inline">\(\rho_{i,j} = \sigma_{i,j}^{2}/(\sigma_{i,i}\sigma_{j,j})\)</span></p>
+<ul>
+<li><span class="math inline">\(\sigma_{i,j}^2\)</span> is a typical element of the variance-covariance matrix, with <span class="math inline">\(\sigma_{i,j}^2=\rho_{i,j}\sigma_{i,i}\sigma_{j,j}\)</span></li>
+</ul></li>
+<li><p>Matrix algebra to convert correlation matrix and SDs to var-cov matrix</p></li>
+</ul>
+<p><span class="math display">\[
+\Sigma=\operatorname{diag}\left(\sigma_{1,1}, \cdots, \sigma_{k, k}\right) \mathrm{P} \operatorname{diag}\left(\sigma_{1,1}, \cdots, \sigma_{k, k}\right)
+\]</span></p>
 </section>
 <section id="motivation-for-being-able-to-deal-with-unstructured-mvn" class="slide level2">
 <h2>Motivation for being able to deal with unstructured MVN</h2>
@@ -433,10 +446,10 @@ Jim Bence
 <ul>
 <li><p>We have already seen how to make a vonB parameter a random effect. We could have made more than one parameter random at the same time using dnorm</p>
 <ul>
-<li>This assumes the random effects are independent but often that is not plausible (when fish ultimately get big (Linf) they might approach asymptotic size more slowly (K).</li>
+<li>This assumes the random effects are independent but often that is not plausible [when fish ultimately get big (Linf) they might approach asymptotic size more slowly (K)].</li>
 </ul></li>
 <li><p>We can implement this by having the vonB parameters follow a multivariate normal distribution</p></li>
-<li><p>Larger and more realistic example data set, reparameterizd the vonB (use L2 rather than t0)</p></li>
+<li><p>Larger and more realistic example data set, reparameterized the vonB (use L2 rather than t0)</p></li>
 </ul>
 </section>
 <section id="new-growth-data-set" class="slide level2">
@@ -460,7 +473,7 @@ L_a=\widetilde{L}_{2}+\left(L_{\infty}-\widetilde{L}_{2}\right) \exp (-K(a-2))
 <section id="the-multivariate-random-effects-model" class="slide level2">
 <h2>The multivariate random effects model</h2>
 <p><span class="math display">\[
-\begin{array}{c}{\left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
+\begin{array}{c}{\underline{\omega}_i = \left[\log L \infty_{i}, \log K_{i}, \log \widetilde{L 2}_{i}\right]^{T} \sim M V N\left(\left[\overline{\log L \infty_{i}}, \overline{\log K_{i}}, \overline{\log \widetilde{L 2}}\right]^{T}, \Sigma\right)} \\L_{i, j} \sim N\left(\operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right), \sigma_{L, i, j}^{2}\right) \\\sigma_{L, i, j}=\exp \left[\operatorname{int}+\operatorname{slp} * \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\right] \operatorname{vonb}\left(\underline{\omega}_{i}, a_{i, j}\right)\end{array}
 \]</span></p>
 <div class="footer footer-default">
 
