@@ -1,0 +1,371 @@
+---
+title: Lesson 5 - The dark art of debugging code 
+title-slide-attributes:
+    data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
+    data-background-size: "40%"
+    data-background-position: "6% 95%"
+subtitle: MLE Software Online Course<br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/lesson4/MLE_lec5.html){style="position:absolute;top:40%;left:35%;font-size:20px;"}
+author: Christopher Cahill <br> Associate Director
+date: 14 December 2023
+date-format: "D MMMM YYYY"
+format: 
+  revealjs:
+    css: "https://qfcatmsu.github.io/css/presStyle.css"
+    slide-number: c/t  
+    theme: simple 
+editor: visual
+highlight-style: kate
+---
+
+## Troubleshooting code as a skill that can be taught, learned, and mastered
+
+![](images/winter.jpg){fig-align="center" width="800" height="500"}
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+-   A general workflow for debugging code
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+-   A general workflow for debugging code
+-   Specifically we want to think about how we might:
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+-   A general workflow for debugging code
+-   Specifically we want to think about how we might:
+    -   Write fewer bugs
+    -   Reproduce bugs
+    -   Locate bugs
+    -   Fix bugs
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+-   A general workflow for debugging code
+-   Specifically we want to think about how we might:
+    -   Write fewer bugs
+    -   Reproduce bugs
+    -   Locate bugs
+    -   Fix bugs
+-   Introduce a few useful tools that help with this workflow
+    -   `styler` library and `browser()`
+
+## Outline
+
+-   The origins of the bug 🐛🐛🐛
+-   A general workflow for debugging code
+-   Specifically we want to think about how we might:
+    -   Write fewer bugs
+    -   Reproduce bugs
+    -   Locate bugs
+    -   Fix bugs
+-   Introduce a few useful tools that help with this workflow
+    -   `styler` library and `browser()`
+-   Work through some of examples
+
+# The original sin (bug)
+
+## The first bug 🐛
+
+![](images/bug.jpg){fig-align="center" width="800" height="500"}
+
+[[Grace Hopper and the origins of bugs and debugging](https://daily.jstor.org/the-bug-in-the-computer-bug-story/)]{.footerRight}
+
+# Step 1: Write fewer bugs
+
+## Follow a consistent style
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+-   QFC trying to follow the tidyverse style guide
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+-   QFC trying to follow the tidyverse style guide
+    -   Most things lower case and words separated by underscores
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+-   QFC trying to follow the tidyverse style guide
+    -   Most things lower case and words separated by underscores
+    -   Implemented via the Styler library
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+-   QFC trying to follow the tidyverse style guide
+    -   Most things lower case and words separated by underscores
+    -   Implemented via the Styler library\
+-   Why care about style?
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## Follow a consistent style
+
+::: {style="font-size: 90%;"}
+-   Good coding style is like correct punctuation: you can manage without it, butitsureMakestHingseaSiertoreAdWHYgodWHY
+-   The importance of adopting a consistent style cannot be stressed enough
+-   QFC trying to follow the tidyverse style guide
+    -   Most things lower case and words separated by underscores
+    -   Implemented via the Styler library\
+-   Why care about style?
+    -   Consistent naming conventions, indendation, and spacing help us train our eyes to spot bugs
+:::
+
+[[Link to the Tidyverse style guide](https://style.tidyverse.org/index.html)]{.footerRight}
+
+[[Why coding style matters](https://www.smashingmagazine.com/2012/10/why-coding-style-matters/)]{.footerLeft}
+
+## An example program that you get from a collaborator
+
+::: {style="font-size: 90%;"}
+```{R echo = T, eval = F}
+f = function(pars) {
+  getAll(data, pars);
+  Linfmn = exp(logLinfmn); logLinfsd = exp(loglogLinfsd);
+  Linfs = exp(logLinfs); K = exp(logK );
+         Sig = exp(logSig);
+  nponds = length(Linfs);
+   nages = length(A);
+  predL = matrix(0, nrow = nages, ncol = nponds);
+      # fill one column (pond) at a time:
+  for (i in 1:nponds) { predL[, i] = Linfs[i] * (1 - exp(-K * (A - t0)));}
+  nll = -sum(dnorm(x = L, mean = predL, sd = Sig, log = TRUE));
+   nprand = -sum(dnorm(x = logLinfs, mean = logLinfmn, sd = logLinfsd, log = TRUE));
+  jnll =  nll +  nprand;
+  jnll;
+}
+```
+:::
+
+## An example program
+
+-   Make it pretty via `styler()`
+
+::: {style="font-size: 90%;"}
+```{R echo = T, eval = F}
+f <- function(pars) {
+  getAll(data, pars)
+  Linfmn <- exp(logLinfmn)
+  logLinfsd <- exp(loglogLinfsd)
+  Linfs <- exp(logLinfs)
+  K <- exp(logK)
+  Sig <- exp(logSig)
+  nponds <- length(Linfs)
+  nages <- length(A)
+  predL <- matrix(0, nrow = nages, ncol = nponds)
+  # fill one column (pond) at a time:
+  for (i in 1:nponds) {
+    predL[, i] <- Linfs[i] * (1 - exp(-K * (A - t0)))
+  }
+  nll <- -sum(dnorm(x = L, mean = predL, sd = Sig, log = TRUE))
+  nprand <- -sum(dnorm(x = logLinfs, mean = logLinfmn, sd = logLinfsd, log = TRUE))
+  jnll <- nll + nprand
+  jnll
+}
+```
+:::
+
+# Step 2: Reproduce the bug
+
+## Reproduce the bug
+
+-   Reproducing a bug allows us to better understand why the program went wrong
+
+[*"Debugging is like being the detective in a crime movie where you are also the murderer." - Filipe Fortes*]{.footerLeft}
+
+## Reproduce the bug
+
+-   Reproducing a bug allows us to better understand why the program went wrong
+-   Pay attention to versions of R and packages
+
+[*"Debugging is like being the detective in a crime movie where you are also the murderer." - Filipe Fortes*]{.footerLeft}
+
+## Reproduce the bug
+
+-   Reproducing a bug allows us to better understand why the program went wrong
+-   Pay attention to versions of R and packages
+-   Pay attention to warnings, errors, and other messages
+
+[*"Debugging is like being the detective in a crime movie where you are also the murderer." - Filipe Fortes*]{.footerLeft}
+
+## Reproduce the bug
+
+-   Reproducing a bug allows us to better understand why the program went wrong
+-   Pay attention to versions of R and packages
+-   Pay attention to warnings, errors, and other messages
+-   Emphasis here on pay attention
+
+[*"Debugging is like being the detective in a crime movie where you are also the murderer." - Filipe Fortes*]{.footerLeft}
+
+## Reproduce the bug
+
+-   Reproducing a bug allows us to better understand why the program went wrong
+-   Pay attention to versions of R and packages
+-   Pay attention to warnings, errors, and other messages
+-   Emphasis here on pay attention
+-   ISOLATE THE BUG
+
+[*"Debugging is like being the detective in a crime movie where you are also the murderer." - Filipe Fortes*]{.footerLeft}
+
+## Determining versions in R
+
+```{R echo = T, eval = T}
+packageVersion("RTMB")
+```
+
+## Determining versions in R
+
+::: {style="font-size: 60%;"}
+```{R echo = T, eval = T}
+sessionInfo() 
+```
+:::
+
+# Step 3: Locate the bug 🐛
+
+## Manual debugging
+
+[[Wikipedia link to Shotgun Debugging](https://en.wikipedia.org/wiki/Shotgun_debugging)]{.footerRight}
+
+## Manual debugging
+
+-   What most people are used to, links back to Jim's bit about understanding the math
+
+[[Wikipedia link to Shotgun Debugging](https://en.wikipedia.org/wiki/Shotgun_debugging)]{.footerRight}
+
+## Manual debugging
+
+-   What most people are used to, links back to Jim's bit about understanding the math
+-   There are smart and effective ways to do this
+
+[[Wikipedia link to Shotgun Debugging](https://en.wikipedia.org/wiki/Shotgun_debugging)]{.footerRight}
+
+## Manual debugging
+
+-   What most people are used to, links back to Jim's bit about understanding the math
+-   There are smart and effective ways to do this
+-   There are also stupid ways to do this
+
+[[Wikipedia link to Shotgun Debugging](https://en.wikipedia.org/wiki/Shotgun_debugging)]{.footerRight}
+
+## Formal debugging tools in R
+
+-   There are several, but I am going to teach you `browser()`
+
+[[Useful article on debugging tools in RStudio](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE)]{.footerRight}
+
+## Formal debugging tools in R
+
+-   There are several, but I am going to teach you `browser()`
+-   `browser()` gives us a way to interrupt the execution of an expression and allow the inspection of the environment
+
+[[Useful article on debugging tools in RStudio](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE)]{.footerRight}
+
+## Formal debugging tools in R
+
+-   There are several, but I am going to teach you `browser()`
+-   `browser()` gives us a way to interrupt the execution of an expression and allow the inspection of the environment
+    -   When I say environment here, think local environment inside a function
+
+[[Useful article on debugging tools in RStudio](https://support.posit.co/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE)]{.footerRight}
+
+## The downside of `browser()`
+
+-   Have to manually add it and then remove it from your code later on
+
+# Step 4: Fix the bug
+
+## Exorcise the bug (demon)
+
+![](images/exorcism.jpg){fig-align="center" width="800" height="500"}
+
+[[Image reference](https://www.history.com/news/exorcisms-christianity-gospels-movie)]{.footerRight}
+
+## My strategy for debugging code
+
+1.  Format the code in a sensible and consistent way
+2.  Reproduce and isolate the bug, noting software versions 2b. Locate the bug using debugging tools
+3.  Explore the unexpected behavior
+4.  Conduct an exorcism to remove the demon\
+5.  Make the code more robust for future users
+
+## Simulation as a critical debugging tool
+
+-   All of the bugs we have discussed so far are the ones that cause errors
+-   **These are not the only bugs**
+    -   The worst bugs allow code to run but unknowingly return incorrect answers
+-   Maximum likelihood methods have a theoretical property of *consistency*, which you can use to your advantage
+-   A word to the wise: most of the bugs Lisa Chong (QFC postdoc) is finding in Great Lakes assessment models are of this type 💀💀👻
+
+[[Wikipedia link on the consistency property of the Maximum Likelihood Estimator](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation)]{.footerRight}
+
+## References
+
+::: {style="font-size:25px"}
+-   Kasper Kristensen, Anders Nielsen, Casper W. Berg, Hans Skaug, Bradley M. Bell. 2016. TMB: Automatic Differentiation and Laplace Approximation. Journal of Statistical Software, 70(5), 1-21. doi:10.18637/jss.v070.i05
+
+-   Kristensen K. 2023. RTMB: R Bindings for TMB. R package version 1.0, <https://github.com/kaskr/RTMB>
+:::
