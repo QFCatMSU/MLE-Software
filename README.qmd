@@ -19,7 +19,10 @@ Lesson 4 (12/11/2023):
 <https://qfcatmsu.github.io/MLE-Software/lesson4/MLE_lec4.html>\
 
 Lesson 5 (12/14/2023):
-<https://qfcatmsu.github.io/MLE-Software/lesson4/MLE_lec5.html>\
+<https://qfcatmsu.github.io/MLE-Software/lesson5/MLE_lec5.html>\
+
+Lesson 6 (12/15/2023):
+<https://qfcatmsu.github.io/MLE-Software/lesson6/MLE_lec6.html>\
 
 Evolving description of misc examples (12/12/2023):
 <https://qfcatmsu.github.io/MLE-Software/more_examples/MLE_examples.html>\
