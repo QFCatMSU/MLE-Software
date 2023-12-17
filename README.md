@@ -4,6 +4,10 @@
 
 <https://qfcatmsu.github.io/MLE-Software/Syllabus/MLEsoft_syllabus.html>
 
+## Substantive changes post course offering period
+
+<https://qfcatmsu.github.io/MLE-Software/erratum/erratum.html>
+
 ## Lesson links
 
 Lesson 1 (12/5/2023):
