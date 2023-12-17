@@ -46,6 +46,18 @@ highlight-style: kate
 
 -   Pretty much ignored and not studied/evaluated in stock assessment
 
+## Demonstration of REML for "known" bias case
+
+-   In standard regression (with normal errors) the maximum likelihood estimate for residual error variance is (residual SS)/n.
+
+-   The minimum variance unbiased estimate for linear regression is (residual SS)/(n-2).
+
+-   This is approximately unbiased for nonlinear regression.
+
+-   The RTMB reml procedure will produce the approximatley unbiased estimates (see musky_vonb_reml.R)
+
+-   This is just to demo of what REML is doing for a known answer case!
+
 ## Residuals
 
 -   standard Pearson residuals
@@ -74,7 +86,7 @@ highlight-style: kate
 
 -   In addition, we really want to look at residuals in some sense integrated over random effects, rather than at the best estimates of random effects
 
-## Solutions: OSA = Recursive quantile residuals:  
+## Solutions: OSA = Recursive quantile residuals:
 
 -   The capability is built into RTMB and in theory can be applied almost automatically: oneStepPredict(obj) - with data set up using OBS
 
@@ -93,6 +105,14 @@ Thygesen et al. Environ Ecol Stat 24(2): 317--339.
 
 -   This is why we generally don't specify non-normal distributions for random effects.
 
--   RTMB includes a helper function that checks the Laplace approximation call as: checkConsistency(obj)
+-   RTMB includes a helper function that checks the Laplace approximation
 
-    -   Requires you have set up your function for simulation (using OBS) (and the simulations work!)
+## RTMB function checkConsistency to check on Laplace approximation
+
+-   Call as checkConsistency(obj) or as checkConsistency(obj,estimate=TRUE). Run summary on result.
+
+-   Requires you have set up your function for simulation (using OBS) (and the simulations work!).
+
+-   Usually want estimate=TRUE optional argument. This conducts a full simulation and evaluates parameter bias and whether simulated data are constent with assumed distributions.of simulation.
+
+    -   Without this it evaluates the approximation in an approximate way (but faster).
