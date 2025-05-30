@@ -1,20 +1,7 @@
 ---
-title: Lesson 6 - More Random Effects 
-title-slide-attributes:
-    data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
-    data-background-size: "40%"
-    data-background-position: "6% 95%"
-subtitle: MLE Software Online Course<br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/lesson6/MLE_lec6.html){style="position:absolute;top:40%;left:35%;font-size:20px;"}
-author: Jim Bence <br>
+subtitle: Lesson 6 - More Random Effects 
+author: Jim Bence 
 date: 14 December 2023
-date-format: "D MMMM YYYY"
-format: 
-  revealjs:
-    css: "https://qfcatmsu.github.io/css/presStyle.css"
-    slide-number: c/t  
-    theme: simple 
-editor: visual
-highlight-style: kate
 ---
 
 ## Topics

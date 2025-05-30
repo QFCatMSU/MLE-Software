@@ -1,22 +1,7 @@
 ---
-title: Software tools for Maximum Likelihood Estimation
-title-slide-attributes:
-    data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
-    data-background-size: "40%"
-    data-background-position: "6% 95%"
-subtitle: More Examples <br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/more_examples/MLE_examples.html){style="position:absolute;top:40%lesson1;left:35%;font-size:20px;"}
+subtitle: More Examples 
 author: Jim Bence
 date: 12 December 2023
-date-format: "D MMMM YYYY"
-format: 
-  revealjs:
-    css: "https://qfcatmsu.github.io/css/presStyle.css"
-    slide-number: c/t  
-    theme: simple 
-highlight-style: kate
-editor: 
-  markdown: 
-    wrap: 81
 ---
 
 ## Evolving list of examples (check again)

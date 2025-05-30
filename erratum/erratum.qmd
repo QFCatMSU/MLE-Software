@@ -1,20 +1,7 @@
 ---
-title: Erratum and changes 
-title-slide-attributes:
-    data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
-    data-background-size: "40%"
-    data-background-position: "6% 95%"
-subtitle: MLE Software Online Course<br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/erratum/erratum.html){style="position:absolute;top:40%;left:35%;font-size:20px;"}
-author: Jim Bence <br>
+subtitle: Erratum and changes 
+author: Jim Bence
 date: 17 December 2023
-date-format: "D MMMM YYYY"
-format: 
-  revealjs:
-    css: "https://qfcatmsu.github.io/css/presStyle.css"
-    slide-number: c/t  
-    theme: simple 
-editor: visual
-highlight-style: kate
 ---
 
 ## Changes post course period
@@ -23,6 +10,5 @@ This file flags substantive changes to materials on GitHub site made after the c
 
 ## December 17 changes
 
--   R script added to lesson 6 showing REML applied to simple NL regression and showing that the REML procedure produces the known approximately unbiased
-variance estimate.  Slide added for this.
+-   R script added to lesson 6 showing REML applied to simple NL regression and showing that the REML procedure produces the known approximately unbiased variance estimate. Slide added for this.
 -   checkConsistency expanded to two slides and indicates preferred approach of running with "estimate=True"

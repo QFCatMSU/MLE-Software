@@ -1,22 +1,7 @@
 ---
-title: Software tools for Maximum Likelihood Estimation
-title-slide-attributes:
-    data-background-image: "https://qfcatmsu.github.io/Images/dark-big.png"  
-    data-background-size: "40%"
-    data-background-position: "6% 95%"
-subtitle: TMB through RTMB <br> [Click here to view presentation online](https://qfcatmsu.github.io/MLE-Software/lesson1/MLE_lec1.html){style="position:absolute;top:40%lesson1;left:35%;font-size:20px;"}
+subtitle: Lesson 1- TMB through RTMB 
 author: Jim Bence
 date: 22 November 2023
-date-format: "D MMMM YYYY"
-format: 
-  revealjs:
-    css: "https://qfcatmsu.github.io/css/presStyle.css"
-    slide-number: c/t  
-    theme: simple 
-highlight-style: kate
-editor: 
-  markdown: 
-    wrap: 81
 ---
 
 ## Outline: Part I
@@ -49,38 +34,30 @@ editor:
 -   Each class is 2.5 h on zoom
 -   Each class session will be a mix of lecture and work on exercises
 -   Exercise work will be in breakout rooms
--   No formal homework but you may need to review/complete in class exercises
-    between classes
+-   No formal homework but you may need to review/complete in class exercises between classes
 
 ## My assumptions about your background
 
--   Some previous experience with statistics including basic idea of fitting
-    models to data
+-   Some previous experience with statistics including basic idea of fitting models to data
 -   Some previous use of R
 -   Some programming (understanding of functions, loops, conditional statements)
 -   Experience interpreting graphs
--   You can get by without all this background, but you should expect to put in
-    more time
+-   You can get by without all this background, but you should expect to put in more time
 
 ## My background
 
 -   BS in Biology University of Notre Dame
 -   PhD in Ecology and Masters in Statistics at Univ CA, Santa Barbara (both
     1985) 
--   Worked on evaluation of environmental effects of San Onofre Nuclear
-    Generating Station 1985-1989
--   Mathematical Statistician (Stock Assessment Scientist) at NMFS-NOAA Tiburon
-    Lab 1989-1994
--   Faculty member at Michigan State University 1994- (retired from tenure stream
-    position July 2023 - currently part time)
+-   Worked on evaluation of environmental effects of San Onofre Nuclear Generating Station 1985-1989
+-   Mathematical Statistician (Stock Assessment Scientist) at NMFS-NOAA Tiburon Lab 1989-1994
+-   Faculty member at Michigan State University 1994- (retired from tenure stream position July 2023 - currently part time)
 
 ## My philosophy on statistical modeling
 
--   Cookbook solutions rarely are adequate for real quantitative problems needed
-    in ecology and resource management
+-   Cookbook solutions rarely are adequate for real quantitative problems needed in ecology and resource management
 -   In class we will solve simple problems the hard way
-    -   This will make solving hard problems easier and position you to produce
-        better solutions (Royle and Dorazio 2008)
+    -   This will make solving hard problems easier and position you to produce better solutions (Royle and Dorazio 2008)
 -   If you cannot write out your model you don't know what you did!
 -   Don't get lost in coding.
     -   A good model you understand is critical.
@@ -90,22 +67,15 @@ editor:
 -   We are primarily going to use R and RTMB
 -   Recommend Rstudio
 -   Lectures and code will be available through GitHub
-    -   You do not need to know how to use GitHub, but that is where you can find
-        code and presentations
+    -   You do not need to know how to use GitHub, but that is where you can find code and presentations
 
-![](images/Rlogo.png){style="position: absolute; margin-top: 7%; left:0%;"
-width="234"}
-![](images/GitHub_Logo.png){style="width:275px; position: absolute; margin-top: 5%; right:20%;"}
-![](images/aqua.jpg){style="width:275px; position: absolute; margin-top: 20%; right:20%;"}
-![](images/quarto.png){style="width:275px; position: absolute; margin-top: 14%; right:20%;"}
+![](images/Rlogo.png){style="position: absolute; margin-top: 7%; left:0%;" width="234"} ![](images/GitHub_Logo.png){style="width:275px; position: absolute; margin-top: 5%; right:20%;"} ![](images/aqua.jpg){style="width:275px; position: absolute; margin-top: 20%; right:20%;"} ![](images/quarto.png){style="width:275px; position: absolute; margin-top: 14%; right:20%;"}
 
 ## What is RTMB, why use it?
 
--   R package for maximum likelihood fitting of arbitrarily complex models that
-    incorporate random effects
+-   R package for maximum likelihood fitting of arbitrarily complex models that incorporate random effects
 -   Nonlinear and non-normal models (within reason!)
--   RTMB uses Template Model Builder (TMB) and TMB was inspired by AD Model
-    Builder (ADMB)
+-   RTMB uses Template Model Builder (TMB) and TMB was inspired by AD Model Builder (ADMB)
 
 ## What is RTMB, why use it? A peak under the hood
 
@@ -114,22 +84,19 @@ width="234"}
 -   Automatic identification of parts of models that are connected (TMB)
 -   TMB is much faster for models with random effects
 -   No need for C++ coding (RTMB)
--   Major limitation -- likelihood must be differentiable function of parameters
-    and RTMB must "see" all the calculations in R
+-   Major limitation -- likelihood must be differentiable function of parameters and RTMB must "see" all the calculations in R
 
 ## Expectations
 
 -   Be kind
 -   Make an honest effort to learn this stuff
 -   Share your code
--   This course lies at the intersection of mathematics, statistics, ecology, and
-    numerical computing
+-   This course lies at the intersection of mathematics, statistics, ecology, and numerical computing
     -   Failure is okay and to be expected
 
 ## Some disclaimers
 
-1.  Maximum Likelihood Estimation is powerful but not without drawbacks and
-    limitations
+1.  Maximum Likelihood Estimation is powerful but not without drawbacks and limitations
 2.  This is not a mathematical statistics course
 3.  I don't know everything
     -   I will do my best to track down answers
@@ -153,8 +120,7 @@ width="234"}
 -   These models always contain:
     -   Deterministic (i.e., systematic) components
     -   Random (i.e., stochastic) components
--   We estimate model parameters - can be of direct interest, or used to
-    calculate something of interest
+-   We estimate model parameters - can be of direct interest, or used to calculate something of interest
     -   We are interested in uncertainty of estimates (SEs and CIs)
 
 ## Several example statistical models
@@ -170,19 +136,16 @@ y_{i}=f(\underline{\theta}, \underline{X})+\varepsilon_{i}\\
 L_{i}=L_{\infty}\left(1-e^{-K\left(a_{i}-t_{0}\right)}\right)+\varepsilon_{i}
 $$
 
-![](images/640px-Esox_masquinongyeditcrop.jpg){width="243"}
-![](images/vonBwdata.png){width="315"}
+![](images/640px-Esox_masquinongyeditcrop.jpg){width="243"} ![](images/vonBwdata.png){width="315"}
 
-Data: T. Brenden unpublished. Photo: E. Engbretson, USFWS
-https://commons.wikimedia.org/w/index.php?curid=3720748
+Data: T. Brenden unpublished. Photo: E. Engbretson, USFWS https://commons.wikimedia.org/w/index.php?curid=3720748
 
 ## Hierarchical linear model example
 
 -   Weight is power function of length multiplied by error
     -   On log scale the relationship is linear with additive error
 -   i represents ponds, j fish within ponds
--   Intercept and slope vary randomly among ponds, residual variance is pond
-    specific
+-   Intercept and slope vary randomly among ponds, residual variance is pond specific
 -   Y\~N(a,b) means Y is normal, with mean a and variance b $$
     \begin{array}{c}
     \log W_{i j}=a_{i}+b_{i} \log \left(L_{i j}\right)+\varepsilon_{i j} \\
@@ -224,25 +187,19 @@ $$
 
 -   Whole books about definitions and meaning.
 
--   I follow a frequentist definition for intuition, while recognizing that there
-    is some logic to Bayesian claims of degree of belief
+-   I follow a frequentist definition for intuition, while recognizing that there is some logic to Bayesian claims of degree of belief
 
-    -   Frequentist definition: The long run proportion of of times an event
-        occurs under identical conditions
+    -   Frequentist definition: The long run proportion of of times an event occurs under identical conditions
 
-    -   Statisticians sometimes distinguish outcomes from events. Outcomes are
-        really elementary events. Event might be catching a fish in 7 to 8 inch
-        bin, outcome would be catch a fish and measure its length.
+    -   Statisticians sometimes distinguish outcomes from events. Outcomes are really elementary events. Event might be catching a fish in 7 to 8 inch bin, outcome would be catch a fish and measure its length.
 
 ## Basic properties (axioms) of probabilities
 
--   The sum of probabilites over all possible mutually exclusive events is 1.0
-    (So something will happen)
+-   The sum of probabilites over all possible mutually exclusive events is 1.0 (So something will happen)
 
 -   Probability of any given event is $\geq$ 0 (and $\leq$ 1)
 
--   The probability of the union of mutually exclusive events is the sum of their
-    separate probabilities
+-   The probability of the union of mutually exclusive events is the sum of their separate probabilities
 
     -   $P(A \cup B)=P(A)+P(B)-P(A \cap B)$
 
@@ -256,8 +213,7 @@ $$
 
 -   "\|" read as "given or conditional on -- Probability of A given B
 
--   Conditional probabilities recognize that the occurence of event B can provide
-    information on whether event A will occur
+-   Conditional probabilities recognize that the occurence of event B can provide information on whether event A will occur
 
 -   Convince yourself that $P(A \mid B)=P(A)$ if A and B independent
 
@@ -267,19 +223,15 @@ $$
 
 ## Random variables (words)
 
--   Technical definition is that they are functions that convert probability
-    spaces for events/outcomes to numeric results.
+-   Technical definition is that they are functions that convert probability spaces for events/outcomes to numeric results.
 
     -   Ironically they are neither random nor variables!
 
--   Less technically (but still techno speak!) they describe the numeric outcome
-    of a random process. I.e., they are not a number (or vector/matrix of
-    numbers) but rather the process of producing them.
+-   Less technically (but still techno speak!) they describe the numeric outcome of a random process. I.e., they are not a number (or vector/matrix of numbers) but rather the process of producing them.
 
 -   A random variate is a particular numeric outcome
 
--   Text books say usually capital letters used for random variables and lower
-    case for random variates.
+-   Text books say usually capital letters used for random variables and lower case for random variates.
 
 ## Random variables: math expression for simple example (coin flip)
 
@@ -298,15 +250,13 @@ $$
 
 $$ \operatorname{Pr}(Y=y)=p^{y}(1-p)^{1-y} $$
 
--   The pmf (or pdf) is a function that calculates the probability given the
-    random variate ($y$ value) and the parameter(s) (here $p$)
+-   The pmf (or pdf) is a function that calculates the probability given the random variate ($y$ value) and the parameter(s) (here $p$)
 
     $y$ is observed datum
 
     -   pmf for discrete outcomes
 
--   If this was a continuously distributed random variable we would use
-    probability *density* function (pdf)
+-   If this was a continuously distributed random variable we would use probability *density* function (pdf)
 
 ## pmf and pdf notation
 
@@ -318,25 +268,20 @@ $$
 
 -   Sometimes with subscript for random variable: $f_Y(y \mid \theta)$
 -   often just: $f(y)$
--   Conditional bit indicates that the probability of an observed value $y$
-    depends on parameter(s) $\theta$ used to specify the distribution of the
-    random variable $Y$
+-   Conditional bit indicates that the probability of an observed value $y$ depends on parameter(s) $\theta$ used to specify the distribution of the random variable $Y$
 -   Notation for Benouilli random variable: $f(y \mid \theta)=p^{y}(1-p)^{1-y}$
 
 ## Some common statistical distributions
 
 ![](images/distributions.png){fig-align="center" width="800" height="550"}
 
-[[Figure
-Reference](https://medium.com/@srowen/common-probability-distributions-347e6b945ce4)]{.footerRight}
+[[Figure Reference](https://medium.com/@srowen/common-probability-distributions-347e6b945ce4)]{.footerRight}
 
 ## More notation notes for everyone's sanity
 
--   In general I will provide the pmf (or pdf) expressed as a function of $y$ and
-    the parameters of the distribution.
+-   In general I will provide the pmf (or pdf) expressed as a function of $y$ and the parameters of the distribution.
 
--   For example, will use $y\sim \mathrm{N}(\mu, \sigma^2)$ to indicate a random
-    variable $Y$ is normally distributed with mean $\mu$ and variance $\sigma^2$
+-   For example, will use $y\sim \mathrm{N}(\mu, \sigma^2)$ to indicate a random variable $Y$ is normally distributed with mean $\mu$ and variance $\sigma^2$
 
 -   In general regular font for scalars, bold for vectors and matrices
 
@@ -350,15 +295,11 @@ $$
 
 ## Discrete versus Continuous random variables
 
--   Discrete means the set of possible outcomes is countable with each possible
-    value having an associated probability (calculable from the pmf).
+-   Discrete means the set of possible outcomes is countable with each possible value having an associated probability (calculable from the pmf).
 
--   Continuous means not countable (generally this means there are infinite
-    numbers of possible values between any two other possible values). Pr(y) for
-    any particular y is 0. So we use a probability density function.
+-   Continuous means not countable (generally this means there are infinite numbers of possible values between any two other possible values). Pr(y) for any particular y is 0. So we use a probability density function.
 
--   Intuition/common sense sometimes used to choose between the two. E.g., catch
-    or CPUE often modeled as continuous
+-   Intuition/common sense sometimes used to choose between the two. E.g., catch or CPUE often modeled as continuous
 
 ## Probability density function
 
@@ -374,23 +315,17 @@ $$
 
 -   F(x)=Pr(X\<x)
 
--   For continuous variables, the derivative of F(x) with respect to x is f(x)
-    (the density)
+-   For continuous variables, the derivative of F(x) with respect to x is f(x) (the density)
 
     -   Why? Does this make sense?
 
 ## Joint probability density and mass functions
 
-Vector of observed values, with elements having the same pdf/pmf or different
-ones and these random variables might be independent or not:
-$f(x_1,x_2,...,x_k)=f(\mathbf{x})$
+Vector of observed values, with elements having the same pdf/pmf or different ones and these random variables might be independent or not: $f(x_1,x_2,...,x_k)=f(\mathbf{x})$
 
-Special case of each element representing an independent random variable:
-$f(\mathbf{x})=f_{X_1}(x_1)f_{X_2}(x_2)...f_{X_k}(x_k)$
+Special case of each element representing an independent random variable: $f(\mathbf{x})=f_{X_1}(x_1)f_{X_2}(x_2)...f_{X_k}(x_k)$
 
-Special special case of independent and identically distributed (iid) random
-variables:
-$\mathbf{f}(\mathbf{x})=f(x_1 \mid\theta_1)f(x_2 \mid \theta_2)...f(x_k \mid \theta_k)=\Pi_{i=1}^{i=k} f\left(x_{i} \mid \theta_{i}\right)$
+Special special case of independent and identically distributed (iid) random variables: $\mathbf{f}(\mathbf{x})=f(x_1 \mid\theta_1)f(x_2 \mid \theta_2)...f(x_k \mid \theta_k)=\Pi_{i=1}^{i=k} f\left(x_{i} \mid \theta_{i}\right)$
 
 These special cases very important for practical MLE work!
 
@@ -398,8 +333,7 @@ These special cases very important for practical MLE work!
 
 -   No new math!!!
 
--   The likelihood function is just the joint pdf re-expressed as a function of
-    the parameters: $f(\mathbf{\theta}|\mathbf{x})$
+-   The likelihood function is just the joint pdf re-expressed as a function of the parameters: $f(\mathbf{\theta}|\mathbf{x})$
 
 ## Maximum likelihood estimation
 
@@ -410,28 +344,20 @@ These special cases very important for practical MLE work!
 ## A numerical example
 
 -   **x** ={10.72,7.23,10.07,8.62,8.55}
--   Each observation (x) independent from a common normal distribution with mean
-    10, variance 2 (i.e., they are iid)
--   Calculate the likelihood of these data, i.e.,
-    f(10.72)f(7.23)f(10.07)f(8.62)f(8.55) using R
--   Hints. The result is just a single number. You can calculate the pdf of f(x)
-    for a normal distributionin R using the dnorm function. The dnorm function
-    uses sigma (SD) not sigma squared (variance)
--   Time permitting - generalize as R function to calculate likelihood for any
-    vector x, mean, variance.
+-   Each observation (x) independent from a common normal distribution with mean 10, variance 2 (i.e., they are iid)
+-   Calculate the likelihood of these data, i.e., f(10.72)f(7.23)f(10.07)f(8.62)f(8.55) using R
+-   Hints. The result is just a single number. You can calculate the pdf of f(x) for a normal distributionin R using the dnorm function. The dnorm function uses sigma (SD) not sigma squared (variance)
+-   Time permitting - generalize as R function to calculate likelihood for any vector x, mean, variance.
 
 ## Working with the log likelihood (prefered for numerical reasons)
 
--   Perhaps obviously, if you adjust parameters to maximize the log of the
-    likelihood function this will also maximize the likelihood.
+-   Perhaps obviously, if you adjust parameters to maximize the log of the likelihood function this will also maximize the likelihood.
 
--   RTMB and most software minimizes the negative log likelihood rather than
-    maximizing log likelihood (convention)
+-   RTMB and most software minimizes the negative log likelihood rather than maximizing log likelihood (convention)
 
 -   Working on the log-scale improves numerical performance.
 
-    -   The joint log likelihood for independent observations is the SUM (rather
-        than product) of the individual log f(x) values
+    -   The joint log likelihood for independent observations is the SUM (rather than product) of the individual log f(x) values
 
 ## Negative log likelihood versus mu for five iid observations from a Normal distribution (known variance of 2)
 
@@ -440,13 +366,10 @@ These special cases very important for practical MLE work!
 ## The regression case
 
 -   Observations assumed independent but not identically distributed.
--   The mean varies among observations and in this simple case variance is same
-    for all observations: $y_i\sim \mathrm{N}(\mu_i, \sigma^2)$
+-   The mean varies among observations and in this simple case variance is same for all observations: $y_i\sim \mathrm{N}(\mu_i, \sigma^2)$
 -   Cannot estimate mean as a parameter for every observation
--   But can calculate it as function of parameters, e.g, :
-    $\mu_{i}=\alpha+\beta X_{i}$
--   general message estimated parameters are not the same as the distributional
-    parameters for the pdfs/pmfs
+-   But can calculate it as function of parameters, e.g, : $\mu_{i}=\alpha+\beta X_{i}$
+-   general message estimated parameters are not the same as the distributional parameters for the pdfs/pmfs
 -   What are the model parameters?
 
 ## Psuedocode for the regression problem
@@ -457,8 +380,7 @@ These special cases very important for practical MLE work!
 
 -   Calculate NLL
 
-Search over different values of $\alpha$, $\beta$, and $\sigma^2$ and repeat 1-3
-until you find the values that minimize the NLL
+Search over different values of $\alpha$, $\beta$, and $\sigma^2$ and repeat 1-3 until you find the values that minimize the NLL
 
 ## Two ways to frame the regression model
 
@@ -466,11 +388,8 @@ $$
 \begin{array}{l}y_{i}=\mu_{i}+\epsilon_{i}=\alpha+\beta * X_{i}+\epsilon_{i} \\\epsilon \stackrel{i i d}{\sim} N\left(0, \sigma^{2}\right)\end{array}
 $$
 
--   Previously we modeled mean, which was a distributional parameter. Now we
-    write a model for the individual observations. We can write the likelihood in
-    terms of the errors, or the observations - The two are equivalent!
--   Note but don't worrying about. The standard model notation uses random
-    quantities on the RHS but specifies the random variate on the LHS
+-   Previously we modeled mean, which was a distributional parameter. Now we write a model for the individual observations. We can write the likelihood in terms of the errors, or the observations - The two are equivalent!
+-   Note but don't worrying about. The standard model notation uses random quantities on the RHS but specifies the random variate on the LHS
 
 ## Finding the MLE
 
@@ -486,8 +405,7 @@ $$
 
 ## Role of derivatives in finding MLEs
 
-![NLL as function of single parameter with
-derivatives](images/NLL%20with%20derivs.png)
+![NLL as function of single parameter with derivatives](images/NLL%20with%20derivs.png)
 
 -   Derivatives of NLL with respect to parameters zero at minimum
 
@@ -495,11 +413,9 @@ derivatives](images/NLL%20with%20derivs.png)
 
 ## Grid search exercise
 
--   For the sample of five observations we used before find the MLE estimate of
-    the mean assuming the variance known equal to 2 by conducting a grid search
+-   For the sample of five observations we used before find the MLE estimate of the mean assuming the variance known equal to 2 by conducting a grid search
 
--   Time permitting find MLE estimates of both the mean and variance at the same
-    time by grid search
+-   Time permitting find MLE estimates of both the mean and variance at the same time by grid search
 
 ## Properties of MLEs
 
@@ -509,8 +425,7 @@ derivatives](images/NLL%20with%20derivs.png)
 
 -   MLE not guaranteed to do this!
 
--   MLEs are consistent, meaning estimates will become closer to correct values
-    and sample sizes increase
+-   MLEs are consistent, meaning estimates will become closer to correct values and sample sizes increase
 
     -   Asymptotically unbiased
 
@@ -518,10 +433,8 @@ Errors get smaller with more data
 
 ## Familiar example of bias for an MLE
 
--   MLE for variance of normal random sample:
-    $\hat{\sigma}^{2}=\sum\left(x_{i}-\hat{\mu}\right)^{2} / k$
+-   MLE for variance of normal random sample: $\hat{\sigma}^{2}=\sum\left(x_{i}-\hat{\mu}\right)^{2} / k$
 
 -   Expected value: $E(\hat{\sigma}^{2})=\frac{k-1}{k} \sigma^{2}$
 
--   Standard (unbiased) estimator:
-    $\hat{\sigma}_{u}^{2}=\sum\left(x_{i}-\hat{\mu}\right)^{2} /(k-1)$
+-   Standard (unbiased) estimator: $\hat{\sigma}_{u}^{2}=\sum\left(x_{i}-\hat{\mu}\right)^{2} /(k-1)$

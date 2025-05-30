@@ -1,0 +1,18 @@
+title: Software tools for Maximum Likelihood Estimation
+date-format: "D MMMM YYYY"
+
+title-slide-attributes:
+    data-background-image: "https://qfcatmsu.github.io/assets/images/qfc_logo.png"
+    data-background-size: "40%"
+    data-background-position: "6% 95%"
+format: 
+  revealjs:
+    css: "https://qfcatmsu.github.io/assets/quarto/qfc_pres_styles.css"
+    slide-number: c/t  
+    theme: simple 
+    include-in-header:
+      - text: |
+          <link rel = "shortcut icon" href = "https://qfcatmsu.github.io/assets/images/qfc_icon.png" />
+          <script src="https://qfcatmsu.github.io/assets/quarto/qfc_pres_styles.js"></script>
+editor: visual
+highlight-style: kate
